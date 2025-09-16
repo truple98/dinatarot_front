@@ -1,69 +1,57 @@
-# React + TypeScript + Vite
+# Dinatarot 이다요.
+## 아디나가 타로 점을 봐주는거다요.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**아디나는 이터널 리턴의 캐릭터 아디나다요.**
 
-Currently, two official plugins are available:
+## React + Vite + Typescript 를 사용했다요.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+세부적인 기술 항목이다요.
 
-## Expanding the ESLint configuration
+"dependencies": {
+  "@reduxjs/toolkit": "^2.9.0",
+  "axios": "^1.12.2",
+  "clsx": "^2.1.1",
+  "react": "^19.1.1",
+  "react-dom": "^19.1.1",
+  "react-redux": "^9.2.0",
+  "react-router-dom": "^7.9.1"
+},
+"devDependencies": {
+  "@eslint/js": "^9.33.0",
+  "@types/react": "^19.1.10",
+  "@types/react-dom": "^19.1.7",
+  "@types/react-router-dom": "^5.3.3",
+  "@vitejs/plugin-react": "^5.0.0",
+  "eslint": "^9.33.0",
+  "eslint-plugin-react-hooks": "^5.2.0",
+  "eslint-plugin-react-refresh": "^0.4.20",
+  "globals": "^16.3.0",
+  "typescript": "~5.8.3",
+  "typescript-eslint": "^8.39.1",
+  "vite": "^7.1.2"
+}
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 기술 설명이다요.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- RAG 시스템을 활용해서 타로 카드에 대한 문서를 파싱한다요.
+- OpenAI의 API를 사용해서 타로 점을 봐주는 거다요.
+- 시스템은 이렇게 흘러간다요.
+  - 1. 아디나에게 고민을 말하는 거다요.
+  - 2. 블붕씨가 입력해준 고민은, 아디나 AI에게 전달되는 거다요.
+  - 3. 타로 점을 볼 방법을 선택하는 거다요.
+  - 4. 방법을 선택하면, 아디나가 띵킹을 하는거다요. 머릿속의 문서를 RAG 시스템으로 마구 떠올리는 거다요. 그리고 그걸 아디나 AI에게 전달을 해주면, 아디나 AI가 점을 봐주는거다요!
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+# 알아달라요.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Dinatarot은, 어떠한 상업적 목적으로 이익을 창출하지 않는다요.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+자선봉사 아디나다요.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+그런데 OpenAI API를 사용하고 서버를 유지하려면... 돈이 들어간다요...
+
+그렇다요... 아디나는 거지가 되어버리고 말 것이다요...
+
+빈털털이가 되는거다요...
+
+아디나는... 후원이 필요할지도 모른다요...
