@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './UserInfo.css'
 
@@ -9,6 +9,8 @@ interface UserInfoProps {
 const UserInfo = ({ onSubmit }: UserInfoProps) => {
   const [name, setName] = useState<string>('');
   const [concern, setConcern] = useState<string>('');
+  const [nameFocused, setNameFocused] = useState(false);
+  const [concernFocused, setConcernFocused] = useState(false);
   const [errors, setErrors] = useState<{name?: string, concern?: string}>({});
 
   const nameRef = useRef<HTMLInputElement>(null);
@@ -38,6 +40,15 @@ const UserInfo = ({ onSubmit }: UserInfoProps) => {
     }
   };
 
+  const getFieldClass = (fieldName: 'name' | 'concern', focused: boolean, value: string) => {
+    let className = 'text-field';
+    if (focused) className += ' focused';
+    if (value.length > 0) className += ' filled';
+    if (errors[fieldName]) className += ' error';
+    return className;
+  };
+
+
   return (
     <div className="userinfo-container">
       <div className="userinfo-card">
@@ -45,7 +56,7 @@ const UserInfo = ({ onSubmit }: UserInfoProps) => {
 
         <form onSubmit={handleSubmit} className="userinfo-form">
           <div className="input-group">
-            <div className="text-field">
+            <div className={getFieldClass('name', nameFocused, name)}>
               <input
                 ref={nameRef}
                 type="text"
@@ -55,18 +66,20 @@ const UserInfo = ({ onSubmit }: UserInfoProps) => {
                   setName(e.target.value);
                   if (errors.name) setErrors(prev => ({...prev, name: undefined}));
                 }}
+                onFocus={() => setNameFocused(true)}
+                onBlur={() => setNameFocused(false)}
                 className="text-input"
                 autoComplete="name"
-                required
+                placeholder=" "
               />
               <label htmlFor="name" className="text-label">이름은 뭐다요?</label>
               <div className="text-field-line"></div>
-              {errors.name && <div className="helper-text">{errors.name}</div>}
             </div>
+            {errors.name && <div className="helper-text">{errors.name}</div>}
           </div>
 
           <div className="input-group">
-            <div className="text-field">
+            <div className={getFieldClass('concern', concernFocused, concern)}>
               <textarea
                 ref={concernRef}
                 id="concern"
@@ -75,21 +88,26 @@ const UserInfo = ({ onSubmit }: UserInfoProps) => {
                   setConcern(e.target.value);
                   if (errors.concern) setErrors(prev => ({...prev, concern: undefined}));
                 }}
+                onFocus={() => setConcernFocused(true)}
+                onBlur={() => setConcernFocused(false)}
                 className="text-input text-area"
                 maxLength={500}
-                required
+                placeholder=" "
               />
-              <label htmlFor="concern" className="text-label">고민 거리를 아디나에게 말해보는 거다요.</label>
+              <label htmlFor="concern" className="text-label">고민을 아디나에게 말해보는거다요.</label>
               <div className="text-field-line"></div>
-              {errors.concern && <div className="helper-text">{errors.concern}</div>}
+            </div>
+            {errors.concern && <div className="helper-text">{errors.concern}</div>}
+            <div className={`char-counter ${concern.length > 500 ? 'error' : ''}`}>
+              {concern.length}/500
             </div>
           </div>
 
           <button 
-              type="submit" 
-              className="submit-button"
-              disabled={!name.trim() || !concern.trim()}
-            >
+            type="submit" 
+            className="submit-button"
+            disabled={!name.trim() || !concern.trim()}
+          >
             아디나에게 전달하기.
           </button>
         </form>
