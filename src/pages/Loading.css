@@ -1,0 +1,139 @@
+/* ===== LOADING CONTAINER ===== */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* ===== ICON ANIMATION ===== */
+.icon-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-icon {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loading-icon.active {
+  opacity: 1;
+  transform: scale(1);
+  animation: iconPulse 0.8s ease-in-out;
+}
+
+@keyframes iconPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===== LOADING MESSAGE ===== */
+.loading-message {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: center;
+}
+
+/* ===== LOADING DOTS ===== */
+.loading-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #666;
+  border-radius: 50%;
+  animation: dotBounce 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0;
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .icon-container {
+    width: 80px;
+    height: 80px;
+  }
+
+  .loading-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .loading-message {
+    font-size: 1rem;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .loading-icon,
+  .dot {
+    animation: none;
+    transition: none;
+  }
+
+  .loading-icon.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

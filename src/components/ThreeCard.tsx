@@ -17,17 +17,17 @@ const ThreeCard = ({ onComplete }: ThreeCardProps) => {
       const newCard = generateRandomCard();
       setRevealedCards(prev => [...prev, newCard]);
       setCurrentStep(prev => prev + 1);
-    } else {
+    } else if (currentStep === 3) {
       onComplete(revealedCards);
     }
   };
 
   const getButtonText = () => {
     switch(currentStep) {
-      case 0: return "카드 공개하기";
-      case 1: return "현재 카드";
-      case 2: return "미래 카드";
-      case 3: return "해석 완료";
+      case 0: return "다음";
+      case 1: return "다음";
+      case 2: return "다음";
+      case 3: return "종합";
       default: return "다음";
     }
   };
@@ -40,11 +40,9 @@ const ThreeCard = ({ onComplete }: ThreeCardProps) => {
       <Card position="future" revealed={currentStep >= 3} card={revealedCards[2]} />
       </div>
 
-      {currentStep < 3 && (
-        <button onClick={handleNext} className="next-button">
-          {getButtonText()}
-        </button>
-      )}
+      <button onClick={handleNext} className="next-button">
+        {getButtonText()}
+      </button>
     </div>
   );
 };
