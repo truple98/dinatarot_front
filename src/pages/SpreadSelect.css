@@ -1,0 +1,265 @@
+/* ===== CONTAINER ===== */
+.spreadselect-container {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* ===== SPARKLE ===== */
+.spreadselect-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(1.5px 1.5px at 50px 70px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 150px 120px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 250px 200px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 180px 20px, #fff, transparent),
+    radial-gradient(2px 2px at 80px 150px, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(2px 2px at 120px 20px, rgba(255, 255, 255, 0.9), transparent);
+  background-repeat: repeat;
+  background-size: 300px 300px, 150px 80px, 100px 100px;
+  animation: starfield 25s linear infinite, starTwinkle 2s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes starfield {
+  from { transform: translate(0, 0); }
+  to { transform: translate(80px, 80px); }
+}
+
+@keyframes starTwinkle {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* ===== CONTENT ===== */
+.spreadselect-content {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 48px);
+  min-height: calc(100dvh - 48px);
+}
+
+/* ===== SECTIONS ===== */
+.top-section {
+  flex: 0 0 auto;
+  padding: 24px 0;
+}
+
+.middle-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.bottom-section {
+  flex: 0 0 auto;
+  padding-bottom: 40px;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-button {
+  background: none;
+  border: 1px solid rgba(255, 215, 0, 0.6);
+  color: #ffd700;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+}
+
+/* ===== TITLE ===== */
+.spreadselect-title {
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  font-weight: 400;
+  margin: 0;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffc107 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: 'Lora', serif;
+}
+
+/* ===== SPREADS GRID ===== */
+.spreads-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 100%;
+}
+
+/* ===== SPREAD CARD ===== */
+.spread-card {
+  background: rgba(20, 25, 45, 0.9);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(255, 215, 0, 0.1);
+}
+
+.spread-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 12px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.spread-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(255, 215, 0, 0.2);
+}
+
+.spread-card:hover::before {
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.spread-card:active {
+  transform: translateY(-2px);
+}
+
+/* ===== SPREAD ICON ===== */
+.spread-icon {
+  font-size: 3rem;
+  color: #ffd700;
+  margin-bottom: 16px;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ===== SPREAD TEXT ===== */
+.spread-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #ffd700;
+  font-family: 'Lora', serif;
+}
+
+.spread-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  color: rgba(255, 215, 0, 0.8);
+  font-style: italic;
+}
+
+.spread-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(248, 248, 255, 0.8);
+  margin: 0 0 20px 0;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.spread-cards-count {
+  font-size: 0.8rem;
+  color: rgba(255, 215, 0, 0.6);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .spreadselect-container {
+    padding: 20px 16px;
+  }
+
+  .spreads-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .spread-card {
+    padding: 28px 20px;
+  }
+
+  .spread-icon {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .spreadselect-container {
+    padding: 16px 12px;
+  }
+
+  .spread-card {
+    padding: 24px 16px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .spreadselect-container::before {
+    animation: none;
+  }
+
+  .spread-icon {
+    animation: none;
+  }
+
+  .spread-card {
+    transition: none;
+  }
+}
+
+.spread-card:focus {
+  outline: 3px solid #ffd700;
+  outline-offset: 3px;
+}

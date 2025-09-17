@@ -1,3 +1,4 @@
+/* ===== CONTAINER ===== */
 .home-container {
   min-height: 100vh;
   min-height: 100dvh;
@@ -12,8 +13,7 @@
 
 
 
-/* particle */
-
+/* ===== PARTICLE ===== */
 .home-container::before {
   content: '';
   position: absolute;
@@ -50,11 +50,10 @@
   50% { opacity: 1; }
   100% { opacity: 0.5; }
 }
-/* /particle */
 
 
 
-/* card */
+/* ===== CARD ===== */
 
 .home-card {
   background-image: url('../assets/interface/card.jpg');
@@ -87,15 +86,14 @@
   pointer-events: none;
 }
 
-/* /card */
-
-
-
 .home-card > * {
   position: relative;
   z-index: 1;
 }
 
+
+
+/* ===== TITLE ===== */
 .home-title {
   font-size: clamp(2.2rem, 8vw, 3.2rem);
   margin: 0 0 24px 0;
@@ -150,7 +148,7 @@
 
 
 
-/* button */
+/* ===== BUTTON ===== */
 
 .home-button {
   background: rgba(10, 15, 30, 0.8);
@@ -217,11 +215,9 @@
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
 }
 
-/* /button */
 
 
-
-/* mobile */
+/* ===== MOBILE ===== */
 
 @media (max-width: 768px) {
   .home-container {

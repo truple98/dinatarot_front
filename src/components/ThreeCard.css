@@ -1,0 +1,140 @@
+/* ===== CONTAINER ===== */
+.three-card-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  min-height: 400px;
+  position: relative;
+}
+
+/* ===== CARDS LAYOUT ===== */
+.cards-layout {
+  display: flex;
+  gap: 60px;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.cards-layout .card {
+  margin-top: -100px;
+}
+
+/* ===== NEXT BUTTON ===== */
+.next-button {
+  background: none;
+  background-image: none;
+  color: #ffd700;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 215, 0, 0.6);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+  box-shadow: none;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-shadow: none;
+}
+
+.next-button::before {
+  display: none;
+}
+
+.next-button:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.next-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: translateX(-50%);
+}
+
+.next-button:disabled:hover {
+  transform: none;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .cards-layout {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .three-card-container {
+    gap: 30px;
+    padding: 16px;
+  }
+
+  .cards-layout {
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+
+  .next-button {
+    padding: 14px 28px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .cards-layout {
+    gap: 20px;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .cards-layout .card {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .three-card-container {
+    gap: 24px;
+    padding: 12px;
+  }
+
+  .cards-layout {
+    gap: 16px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cards-layout .card {
+    margin-bottom: 25px;
+  }
+
+  .next-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .next-button {
+    transition: none;
+  }
+}
+
+.next-button:focus {
+  outline: 3px solid #ffd700;
+  outline-offset: 4px;
+}
