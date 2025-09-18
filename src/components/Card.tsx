@@ -11,7 +11,7 @@ interface CardProps {
   className?: string;
 }
 
-const Card = ({ card, revealed, size = 'medium', onClick, className = '' }: CardProps) => {
+const Card = ({ card, revealed, position, size = 'medium', onClick, className = '' }: CardProps) => {
   return(
     <div
       className={`card ${size} ${revealed ? 'revealed' : 'hidden'} ${className} ${card?.isForward === false ? 'reversed' : ''}`}
@@ -33,6 +33,9 @@ const Card = ({ card, revealed, size = 'medium', onClick, className = '' }: Card
           </div>
         )}
       </div>
+      {position && (
+        <div className="position-label">{position}</div>
+      )}
     </div>
   );
 };

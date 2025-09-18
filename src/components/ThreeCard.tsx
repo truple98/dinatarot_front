@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import Card from './Card';
-import { generateRandomCard } from '../utils/mockCards';
+import { useCardReveal } from '../hooks/useCardReveal';
 import type { SpreadCardData } from '../utils/mockCards';
 import './ThreeCard.css';
 
@@ -9,39 +8,20 @@ interface ThreeCardProps {
 }
 
 const ThreeCard = ({ onComplete }: ThreeCardProps) => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [revealedCards, setRevealedCards] = useState<SpreadCardData[]>([]);
+  const cardPositions = ['과거', '현재', '미래'];
 
-  const handleNext = () => {
-    if (currentStep < 3) {
-      const newCard = generateRandomCard();
-      setRevealedCards(prev => [...prev, newCard]);
-      setCurrentStep(prev => prev + 1);
-    } else if (currentStep === 3) {
-      onComplete(revealedCards);
-    }
-  };
-
-  const getButtonText = () => {
-    switch(currentStep) {
-      case 0: return "다음";
-      case 1: return "다음";
-      case 2: return "다음";
-      case 3: return "종합";
-      default: return "다음";
-    }
-  };
+  const { isCardRevealed, getCard, handleNext } = useCardReveal(3, onComplete);
 
   return (
     <div className="three-card-container">
       <div className="cards-layout">
-      <Card position="past" revealed={currentStep >= 1} card={revealedCards[0]} />
-      <Card position="present" revealed={currentStep >= 2} card={revealedCards[1]} />
-      <Card position="future" revealed={currentStep >= 3} card={revealedCards[2]} />
+        <Card position={cardPositions[0]} revealed={isCardRevealed(0)} card={getCard(0)} />
+        <Card position={cardPositions[1]} revealed={isCardRevealed(1)} card={getCard(1)} />
+        <Card position={cardPositions[2]} revealed={isCardRevealed(2)} card={getCard(2)} />
       </div>
 
       <button onClick={handleNext} className="next-button">
-        {getButtonText()}
+        다음
       </button>
     </div>
   );

@@ -1,0 +1,148 @@
+/* ===== CONTAINER ===== */
+.celtic-cross-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  min-height: 500px;
+  position: relative;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.celtic-cross-layout {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== CROSS SECTION ===== */
+.cross-section {
+  display: grid;
+  grid-template-columns: 80px 80px 80px;
+  grid-template-rows: 120px 120px 120px;
+  gap: 15px;
+  position: relative;
+}
+
+.card-top {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-left {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-center {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-right {
+  grid-column: 3;
+  grid-row: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-bottom {
+  grid-column: 2;
+  grid-row: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-base {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.center-cross {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  z-index: 2;
+}
+
+/* ===== STAFF SECTION ===== */
+.staff-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+/* ===== NEXT BUTTON ===== */
+.celtic-cross-container .next-button {
+  background: none;
+  color: #ffd700;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 215, 0, 0.6);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.celtic-cross-container .next-button:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .celtic-cross-layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .staff-section {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cross-section {
+    grid-template-columns: 70px 70px 70px;
+    grid-template-rows: 105px 105px 105px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cross-section {
+    grid-template-columns: 60px 60px 60px;
+    grid-template-rows: 90px 90px 90px;
+    gap: 8px;
+  }
+}

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import ThreeCard from '../components/ThreeCard';
-// import CelticCross from '../components/CelticCross';
-// import Relationship from '../components/Relationship';
-// import Horoscope from '../components/Horoscope';
+import CelticCross from '../components/CelticCross';
+import Relationship from '../components/Relationship';
+import Horoscope from '../components/Horoscope';
 import type { SpreadCardData } from '../utils/mockCards';
 import './Spread.css'
 
@@ -26,7 +26,6 @@ const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
       'relationship': 'Relationship',
       'horoscope': 'Horoscope'
     };
-
     return titles[spreadType as keyof typeof titles] || 'Tarot Spread';
   };
 
@@ -34,12 +33,12 @@ const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
     switch(spreadType) {
       case 'three-card':
         return <ThreeCard onComplete={onComplete} />;
-      // case 'celtic-cross':
-      //   return <CelticCross onComplete={onComplete} />;
-      // case 'relationship':
-      //   return <Relationship onComplete={onComplete} />;
-      // case 'horoscope':
-      //   return <Horoscope onComplete={onComplete} />;
+      case 'celtic-cross':
+        return <CelticCross onComplete={onComplete} />;
+      case 'relationship':
+        return <Relationship onComplete={onComplete} />;
+      case 'horoscope':
+        return <Horoscope onComplete={onComplete} />;
       default:
         return <div>Unknown spread type</div>
     }

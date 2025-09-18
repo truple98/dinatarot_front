@@ -80,7 +80,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 24px;
+  padding: 24px;
   position: relative;
   z-index: 1;
 }
@@ -88,11 +88,11 @@
 .card-spread-box {
   width: 100%;
   max-width: 900px;
-  height: 400px;
+  height: 500px;
   background: rgba(20, 25, 45, 0.95);
   border: 2px solid rgba(255, 215, 0, 0.3);
   border-radius: 16px;
-  padding: 40px;
+  padding: 0 40px;
   backdrop-filter: blur(15px);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.3),
@@ -117,7 +117,7 @@
 /* ===== BOTTOM (TEXT AREA) ===== */
 .spread-bottom {
   flex: 0 0 auto;
-  padding: 0 24px 24px;
+  padding: 24px;
   position: relative;
   z-index: 2;
 }
@@ -127,7 +127,7 @@
   border: 2px solid rgba(255, 215, 0, 0.4);
   border-radius: 16px;
   padding: 24px;
-  height: 200px;
+  height: 300px;
   backdrop-filter: blur(15px);
   box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.3),

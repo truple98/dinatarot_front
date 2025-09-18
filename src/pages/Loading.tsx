@@ -10,7 +10,7 @@ interface LoadingProps {
   message?: string;
 }
 
-const Loading = ({ onComplete, duration = 3000, message = "로딩 중 이다요..."}: LoadingProps) => {
+const Loading = ({ onComplete, duration = 3000, message = "로딩중 이다요..."}: LoadingProps) => {
   const [currentIcon, setCurrentIcon] = useState(0);
 
   const icons = [

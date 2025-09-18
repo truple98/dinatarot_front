@@ -1,0 +1,133 @@
+/* ===== CONTAINER ===== */
+.relationship-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  min-height: 500px;
+  position: relative;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.relationship-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 400px;
+}
+
+/* ===== TOP ===== */
+.top {
+  display: flex;
+  gap: 120px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== MIDDLE-TOP ===== */
+.middle-top {
+  display: flex;
+  gap: 240px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== MIDDLE-BOTTOM ===== */
+.middle-bottom {
+  display: flex;
+  gap: 80px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== BOTTOM ===== */
+.bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== CARD POSITION ===== */
+.card-position {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== NEXT BUTTON ===== */
+.relationship-container .next-button {
+  background: none;
+  color: #ffd700;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 215, 0, 0.6);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.relationship-container .next-button:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.relationship-container .next-button:focus {
+  outline: 3px solid #ffd700;
+  outline-offset: 4px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .top {
+    gap: 80px;
+  }
+
+  .middle-top,
+  .middle-bottom {
+    gap: 60px;
+  }
+
+  .relationship-layout {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .relationship-container {
+    padding: 20px 10px;
+  }
+
+  .top {
+    gap: 60px;
+  }
+
+  .middle-top,
+  .middle-bottom {
+    gap: 40px;
+  }
+
+  .relationship-layout {
+    gap: 12px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .relationship-container .next-button {
+    transition: none;
+  }
+}

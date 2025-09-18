@@ -1,0 +1,133 @@
+/* ===== CONTAINER ===== */
+.horoscope-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  min-height: 500px;
+  position: relative;
+}
+
+/* ===== MAIN LAYOUT ===== */
+.horoscope-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.horoscope-grid {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.horoscope-grid > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.horoscope-grid .first,
+.horoscope-grid .sixth {
+  gap: 24px;
+}
+
+.horoscope-grid .second,
+.horoscope-grid .fifth {
+  gap: 114px;
+}
+
+.horoscope-grid .third,
+.horoscope-grid .fourth {
+  gap: 204px;
+}
+
+/* ===== NEXT BUTTON ===== */
+.horoscope-container .next-button {
+  background: none;
+  color: #ffd700;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 215, 0, 0.6);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.horoscope-container .next-button:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #ffd700;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.horoscope-container .next-button:focus {
+  outline: 3px solid #ffd700;
+  outline-offset: 4px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .horoscope-grid {
+    gap: 15px;
+    max-width: 500px;
+  }
+
+  .horoscope-grid .first,
+  .horoscope-grid .sixth {
+    gap: 15px;
+  }
+
+  .horoscope-grid .second,
+  .horoscope-grid .fifth {
+    gap: 60px;
+  }
+
+  .horoscope-grid .third,
+  .horoscope-grid .fourth {
+    gap: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .horoscope-container {
+    padding: 20px 10px;
+  }
+
+  .horoscope-grid {
+    gap: 10px;
+    max-width: 400px;
+  }
+
+  .horoscope-grid .first,
+  .horoscope-grid .sixth {
+    gap: 10px;
+  }
+
+  .horoscope-grid .second,
+  .horoscope-grid .fifth {
+    gap: 40px;
+  }
+
+  .horoscope-grid .third,
+  .horoscope-grid .fourth {
+    gap: 70px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .horoscope-container .next-button {
+    transition: none;
+  }
+}
