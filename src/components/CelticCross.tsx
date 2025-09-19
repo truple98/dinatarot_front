@@ -1,13 +1,13 @@
 import Card from './Card';
-import { useCardReveal } from '../hooks/useCardReveal';
 import type { SpreadCardData } from '../utils/mockCards';
 import './CelticCross.css';
 
 interface CelticCrossProps {
-  onComplete: (cards: SpreadCardData[]) => void;
+  isCardRevealed: (index: number) => boolean;
+  getCard: (index: number) => SpreadCardData | undefined;
 }
 
-const CelticCross = ({ onComplete }: CelticCrossProps) => {
+const CelticCross = ({ isCardRevealed, getCard }: CelticCrossProps) => {
   const cardPositions = [
     '현재 상황',
     '도전과 장애물',
@@ -20,8 +20,6 @@ const CelticCross = ({ onComplete }: CelticCrossProps) => {
     '희망과 두려움',
     '최종 결과'
   ];
-
-  const { isCardRevealed, getCard, handleNext } = useCardReveal(10, onComplete);
 
   return (
     <div className="celtic-cross-container">
@@ -59,9 +57,6 @@ const CelticCross = ({ onComplete }: CelticCrossProps) => {
           </div>
         </div>
       </div>
-      <button onClick={handleNext} className="next-button">
-        다음
-      </button>
     </div>
   )
 }

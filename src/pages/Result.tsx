@@ -30,13 +30,13 @@ const Result = ({ userInfo, selectedCards }: ResultProps) => {
   };
 
   return (
-    <div className="result-container">
+    <div className="result-container page-enter">
       <div className="interpretation-text">
         {getOverallInterpretation()}
       </div>
 
       <div className="action-buttons">
-        <button onClick={handleHome} className="home-btn">
+        <button onClick={handleHome} className="home-btn animate-bounce">
           처음으로
         </button>
       </div>

@@ -50,7 +50,7 @@ const UserInfo = ({ onSubmit }: UserInfoProps) => {
 
 
   return (
-    <div className="userinfo-container">
+    <div className="userinfo-container page-enter">
       <div className="userinfo-card">
         <h1 className="userinfo-title">자, 아디나에게 말해보는 거다요.</h1>
 
@@ -103,9 +103,9 @@ const UserInfo = ({ onSubmit }: UserInfoProps) => {
             </div>
           </div>
 
-          <button 
-            type="submit" 
-            className="submit-button"
+          <button
+            type="submit"
+            className="submit-button animate-bounce"
             disabled={!name.trim() || !concern.trim()}
           >
             아디나에게 전달하기.

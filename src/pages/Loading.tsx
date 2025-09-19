@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';;
+import { useState, useEffect } from 'react';
 import sunIcon from '../assets/interface/sun.png';
 import moonIcon from '../assets/interface/moon.png';
-import starIcon from '../assets/interface/star.jpg';
+import starIcon from '../assets/interface/star.png';
 import './Loading.css';
 
 interface LoadingProps {
@@ -34,7 +34,7 @@ const Loading = ({ onComplete, duration = 3000, message = "로딩중 이다요..
       clearInterval(iconInterval);
       clearTimeout(completeTimer);
     };
-  });
+  }, [duration, onComplete, icons.length]);
 
   return (
     <div className="loading-container">

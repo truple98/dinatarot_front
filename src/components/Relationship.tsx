@@ -1,13 +1,13 @@
 import Card from './Card';
-import { useCardReveal } from '../hooks/useCardReveal';
 import type { SpreadCardData } from '../utils/mockCards';
 import './Relationship.css';
 
 interface RelationshipProps {
-  onComplete: (cards: SpreadCardData[]) => void;
+  isCardRevealed: (index: number) => boolean;
+  getCard: (index: number) => SpreadCardData | undefined;
 }
 
-const Relationship = ({ onComplete }: RelationshipProps) => {
+const Relationship = ({ isCardRevealed, getCard }: RelationshipProps) => {
   const cardPositions = [
     '나',
     '상대방',
@@ -17,8 +17,6 @@ const Relationship = ({ onComplete }: RelationshipProps) => {
     '관계에 대한 상대방의 생각',
     '현재 상황'
   ];
-
-  const { isCardRevealed, getCard, handleNext } = useCardReveal(7, onComplete);
 
   return (
     <div className="relationship-container">
@@ -53,9 +51,6 @@ const Relationship = ({ onComplete }: RelationshipProps) => {
           </div>
         </div>
       </div>
-      <button onClick={handleNext} className="next-button">
-        다음
-      </button>      
     </div>
   )
 }

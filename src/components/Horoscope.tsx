@@ -1,13 +1,13 @@
 import Card from './Card';
-import { useCardReveal } from '../hooks/useCardReveal';
 import type { SpreadCardData } from '../utils/mockCards';
 import './Horoscope.css'
 
 interface HoroscopeProps {
-  onComplete: (cards: SpreadCardData[]) => void;
+  isCardRevealed: (index: number) => boolean;
+  getCard: (index: number) => SpreadCardData | undefined;
 }
 
-const Horoscope = ({ onComplete }: HoroscopeProps) => {
+const Horoscope = ({ isCardRevealed, getCard }: HoroscopeProps) => {
   const cardPositions = [
     '자아와 정체성',
     '재물과 소유',
@@ -22,8 +22,6 @@ const Horoscope = ({ onComplete }: HoroscopeProps) => {
     '우정과 꿈',
     '잠재의식과 영성'
   ];
-
-  const { isCardRevealed, getCard, handleNext } = useCardReveal(12, onComplete);
 
   return (
     <div className="horoscope-container">
@@ -55,9 +53,6 @@ const Horoscope = ({ onComplete }: HoroscopeProps) => {
           </div>
         </div>
       </div>
-      <button onClick={handleNext} className="next-button">
-        다음
-      </button>
     </div>
   );
 };

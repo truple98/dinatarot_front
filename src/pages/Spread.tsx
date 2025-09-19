@@ -3,6 +3,7 @@ import ThreeCard from '../components/ThreeCard';
 import CelticCross from '../components/CelticCross';
 import Relationship from '../components/Relationship';
 import Horoscope from '../components/Horoscope';
+import { useCardReveal } from '../hooks/useCardReveal';
 import type { SpreadCardData } from '../utils/mockCards';
 import './Spread.css'
 
@@ -14,9 +15,28 @@ interface SpreadProps {
 
 const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
   const navigate = useNavigate();
-  
+
   const handleBack = () => {
     navigate('/spread-select');
+  };
+
+  const getCardCount = () => {
+    const counts = {
+      'three-card': 3,
+      'celtic-cross': 10,
+      'relationship': 7,
+      'horoscope': 12
+    };
+    return counts[spreadType as keyof typeof counts] || 3;
+  };
+
+  const { handleNext, isComplete, isCardRevealed, getCard } = useCardReveal(getCardCount(), onComplete);
+
+  const handleNextClick = () => {
+    handleNext();
+    if (isComplete) {
+      navigate('/result');
+    }
   };
 
   const getSpreadTitle = () => {
@@ -30,22 +50,27 @@ const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
   };
 
   const renderSpreadComponent = () => {
+    const spreadProps = {
+      isCardRevealed,
+      getCard
+    };
+
     switch(spreadType) {
       case 'three-card':
-        return <ThreeCard onComplete={onComplete} />;
+        return <ThreeCard {...spreadProps} />;
       case 'celtic-cross':
-        return <CelticCross onComplete={onComplete} />;
+        return <CelticCross {...spreadProps} />;
       case 'relationship':
-        return <Relationship onComplete={onComplete} />;
+        return <Relationship {...spreadProps} />;
       case 'horoscope':
-        return <Horoscope onComplete={onComplete} />;
+        return <Horoscope {...spreadProps} />;
       default:
         return <div>Unknown spread type</div>
     }
   };
 
   return (
-    <div className="spread-container">
+    <div className="spread-container page-enter">
       <div className="spread-header">
         <button onClick={handleBack} className="back-button">
           돌아가기
@@ -61,8 +86,11 @@ const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
 
       <div className="spread-bottom">
         <div className="text-box">
-          {userInfo.name}          
+          {userInfo.name}
         </div>
+        <button onClick={handleNextClick} className="next-button animate-bounce">
+          다음
+        </button>
       </div>
     </div>
   );

@@ -62,22 +62,29 @@ const AppContent = () => {
   }
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/user-info" element={<UserInfo onSubmit={setUserInfo} />}/>
-      <Route path="/spread-select" element={userInfo ?
-        <SpreadSelect onSelect={setSelectedSpread} /> :
-        <Navigate to="/" replace />
-      }/>
-      <Route path="/spread" element={userInfo && selectedSpread ?
-        <Spread spreadType={selectedSpread} userInfo={userInfo} onComplete={setSelectedCards} /> :
-        <Navigate to="/" replace />
-      }/>
-      <Route path="/result" element={selectedCards ?
-        <Result userInfo={userInfo} spreadType={selectedSpread} selectedCards={selectedCards}/> :
-        <Navigate to="/" replace />
-      }/>
-    </Routes>
+    <div className="app-container">
+      <div className="app-background">
+        <div className="sparkle-background"></div>
+      </div>
+      <div className="app-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/user-info" element={<UserInfo onSubmit={setUserInfo} />}/>
+          <Route path="/spread-select" element={userInfo ?
+            <SpreadSelect onSelect={setSelectedSpread} /> :
+            <Navigate to="/" replace />
+          }/>
+          <Route path="/spread" element={userInfo && selectedSpread ?
+            <Spread spreadType={selectedSpread} userInfo={userInfo} onComplete={setSelectedCards} /> :
+            <Navigate to="/" replace />
+          }/>
+          <Route path="/result" element={selectedCards ?
+            <Result userInfo={userInfo} spreadType={selectedSpread} selectedCards={selectedCards}/> :
+            <Navigate to="/" replace />
+          }/>
+        </Routes>
+      </div>
+    </div>
   );
 };
 

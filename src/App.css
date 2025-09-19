@@ -20,3 +20,153 @@ body {
   font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
 }
+
+
+
+
+
+
+/* APP.tsx */
+
+/* App Container */
+.app-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Common Background */
+.app-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  z-index: -1;
+}
+
+/* Sparkle Background */
+.sparkle-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(1.5px 1.5px at 50px 70px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 150px 120px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 250px 200px, rgba(255, 255, 255, 0.7), transparent);
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  animation: starfield 25s linear infinite, starTwinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes starfield {
+  from { transform: translate(0, 0); }
+  to { transform: translate(80px, 80px); }
+}
+
+@keyframes starTwinkle {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* App Content */
+.app-content {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 1;
+}
+
+/* Page Enter Animation - 순차적 등장 효과 */
+.page-enter {
+  opacity: 0;
+  animation: pageEnter 0.6s ease-out forwards;
+}
+
+.page-enter > * {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation: elementPop 0.5s ease-out forwards;
+}
+
+.page-enter > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.page-enter > *:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.page-enter > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.page-enter > *:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.page-enter > *:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+/* 더 깊은 요소들을 위한 클래스 */
+.animate-pop {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  animation: elementPop 0.4s ease-out forwards;
+}
+
+.animate-pop:nth-child(1) { animation-delay: 0.1s; }
+.animate-pop:nth-child(2) { animation-delay: 0.2s; }
+.animate-pop:nth-child(3) { animation-delay: 0.3s; }
+.animate-pop:nth-child(4) { animation-delay: 0.4s; }
+.animate-pop:nth-child(5) { animation-delay: 0.5s; }
+.animate-pop:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes pageEnter {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes elementPop {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  70% {
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 버튼 등 특별한 요소를 위한 bounce 효과 */
+.animate-bounce {
+  opacity: 0;
+  transform: translateY(30px) scale(0.8);
+  animation: elementBounce 0.6s ease-out forwards;
+}
+
+@keyframes elementBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+  }
+  70% {
+    transform: translateY(5px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

@@ -53,7 +53,7 @@ const SpreadSelect = ({ onSelect }: SpreadSelectProps) => {
   ];
 
   return (
-    <div className="spreadselect-container">
+    <div className="spreadselect-container page-enter">
       <div className="spreadselect-content">
         <div className="top-section">
           <button onClick={handleBack} className="back-button">
@@ -72,7 +72,7 @@ const SpreadSelect = ({ onSelect }: SpreadSelectProps) => {
             {spreads.map((spread) => (
               <div
                 key={spread.id}
-                className="spread-card"
+                className="spread-card animate-pop"
                 onClick={() => handleSelect(spread.id)}
               >
                 <div className="spread-icon">{spread.icon}</div>
