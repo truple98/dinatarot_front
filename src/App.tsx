@@ -6,7 +6,7 @@ import SpreadSelect from './pages/SpreadSelect';
 import Spread from './pages/Spread';
 import Result from './pages/Result';
 import Loading from './pages/Loading';
-import type { SpreadCardData } from './utils/mockCards';
+import type { SpreadCardData } from './types/card.types';
 
 import './App.css';
 

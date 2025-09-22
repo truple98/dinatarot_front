@@ -4,7 +4,7 @@ import CelticCross from '../components/CelticCross';
 import Relationship from '../components/Relationship';
 import Horoscope from '../components/Horoscope';
 import { useCardReveal } from '../hooks/useCardReveal';
-import type { SpreadCardData } from '../utils/mockCards';
+import type { SpreadCardData } from '../types/card.types';
 import './Spread.css'
 
 interface SpreadProps {
@@ -30,9 +30,11 @@ const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
     return counts[spreadType as keyof typeof counts] || 3;
   };
 
-  const { handleNext, isComplete, isCardRevealed, getCard } = useCardReveal(getCardCount(), onComplete);
+  const { handleNext, isComplete, isCardRevealed, getCard, loading, error, canProceed } = useCardReveal(spreadType, getCardCount(), onComplete);
 
   const handleNextClick = () => {
+    if (loading) return
+
     handleNext();
     if (isComplete) {
       navigate('/result');
@@ -87,9 +89,14 @@ const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
       <div className="spread-bottom">
         <div className="text-box">
           {userInfo.name}
+          {error && (
+            <div className="error-message" style={{color: 'red', marginTop: '10px'}}>
+              {error}
+            </div>
+          )}
         </div>
-        <button onClick={handleNextClick} className="next-button animate-bounce">
-          다음
+        <button onClick={handleNextClick} className="next-button animate-bounce" disabled={!canProceed} >
+          {loading ? '...' : isComplete ? '...' : '다음'}
         </button>
       </div>
     </div>

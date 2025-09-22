@@ -1,4 +1,8 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { apiService } from '../services/api';
+import type { SpreadData } from '../services/api';
+
 import './SpreadSelect.css';
 
 interface SpreadSelectProps {
@@ -7,6 +11,39 @@ interface SpreadSelectProps {
 
 const SpreadSelect = ({ onSelect }: SpreadSelectProps) => {
   const navigate = useNavigate();
+  const [spreads, setSpreads] = useState<SpreadData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchSpreads = async () => {
+      try {
+        setLoading(true);
+        const response = await apiService.getSpreads();
+        if (response.success) {
+          setSpreads(response.data);
+        } else {
+          setError(response.message);
+        }
+      } catch (error) {
+        setError(error instanceof Error ? error.message : '스프레드 목록을 불러오는데 실패했다요...');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSpreads();
+  }, []);
+
+  const getSpreadIcon = (spreadId: string) => {
+    const icons = {
+      'three-card': '✧',
+      'celtic-cross': '✦',
+      'relationship': '❋',
+      'horoscope': '✤'
+    };
+    return icons[spreadId as keyof typeof icons] || '✧';
+  };
 
   const handleSelect = (type: string) => {
     onSelect(type);
@@ -17,40 +54,23 @@ const SpreadSelect = ({ onSelect }: SpreadSelectProps) => {
     navigate('/user-info');
   };
 
-  const spreads = [
-    {
-      id: 'three-card',
-      title: 'Three Cards',
-      subtitle: '과거, 현재, 미래',
-      description: '간단하고 명확한 3장의 카드로\n과거와 현재, 미래를 알아보는거다요.',
-      icon: '✧',
-      cards: 3
-    },
-    {
-      id: 'celtic-cross',
-      title: 'Celtic Cross',
-      subtitle: '종합적인 운세',
-      description: '10장의 카드로 상황을 깊이\n분석해보는거다요.',
-      icon: '✦',
-      cards: 10
-    },
-    {
-      id: 'relationship',
-      title: 'Relationship',
-      subtitle: '인간관계 해석',
-      description: '6장의 카드로 관계의 진실을\n들여다보는거다요.',
-      icon: '❋',
-      cards: 6
-    },
-    {
-      id: 'horoscope',
-      title: 'Horoscope',
-      subtitle: '12궁도 운세',
-      description: '12장의 카드로 전체적인\n운명을 보는거다요.',
-      icon: '✤',
-      cards: 12
-    }
-  ];
+  if (loading) {
+    return (
+      <div className="spreadselect-container page-enter">
+        <div className="loading-message">스프레드 목록을 불러오는 중이다요...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="spreadselect-container page-enter">
+        <div className="error-message" style={{color: 'red', textAlign: 'center'}}>
+          {error}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="spreadselect-container page-enter">
@@ -75,19 +95,14 @@ const SpreadSelect = ({ onSelect }: SpreadSelectProps) => {
                 className="spread-card animate-pop"
                 onClick={() => handleSelect(spread.id)}
               >
-                <div className="spread-icon">{spread.icon}</div>
-                <h3 className="spread-title">{spread.title}</h3>
-                <p className="spread-subtitle">{spread.subtitle}</p>
+                <div className="spread-icon">{getSpreadIcon(spread.id)}</div>
+                <h3 className="spread-title">{spread.name}</h3>
+                <p className="spread-subtitle">{spread.nameKr}</p>
                 <p className="spread-description">
-                  {spread.description.split('\n').map((line, index) => (
-                    <span key={index}>
-                      {line}
-                      {index < spread.description.split('\n').length - 1 && <br />}
-                    </span>
-                  ))}
+                  {spread.description}
                 </p>
                 <div className="spread-cards-count">
-                  {spread.cards}장의 카드
+                  {spread.cardCount}장의 카드
                 </div>
               </div>
             ))}

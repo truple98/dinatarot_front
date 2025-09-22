@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import type { SpreadCardData } from "../utils/mockCards";
+import type { SpreadCardData } from '../types/card.types';
 import './Result.css'
 
 interface ResultProps {

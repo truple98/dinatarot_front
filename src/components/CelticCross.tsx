@@ -1,5 +1,5 @@
 import Card from './Card';
-import type { SpreadCardData } from '../utils/mockCards';
+import type { SpreadCardData } from '../types/card.types';
 import './CelticCross.css';
 
 interface CelticCrossProps {
