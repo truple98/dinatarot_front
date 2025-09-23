@@ -1,4 +1,4 @@
-import type { SpreadCardData } from '../types/card.types';
+import type { SpreadCardData } from '../utils/tarot';
 import cardBackImage from '../assets/interface/tarot_card_back.jpg'
 import './Card.css';
 

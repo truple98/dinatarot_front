@@ -1,0 +1,51 @@
+{
+  "id": "relationship",
+  "name": "Relationship",
+  "nameKr": "관계 타로 스프레드",
+  "cardCount": 7,
+  "description": "7장의 카드로 관계의 진실을 \n들여다 보는거다요.",
+  "positions": [
+    {
+      "id": 1,
+      "name": " ",
+      "nameKr": "나",
+      "description": " "
+    },
+    {
+      "id": 2,
+      "name": " ",
+      "nameKr": "상대방",
+      "description": " "
+    },
+    {
+      "id": 3,
+      "name": " ",
+      "nameKr": "상대방에 대한 나의 생각",
+      "description": " "
+    },
+    {
+      "id": 4,
+      "name": " ",
+      "nameKr": "나에 대한 상대방의 생각",
+      "description": " "
+    },
+    {
+      "id": 5,
+      "name": " ",
+      "nameKr": "관계에 대한 나의 생각",
+      "description": " "
+    },
+    {
+      "id": 6,
+      "name": " ",
+      "nameKr": "관계에 대한 상대방의 생각",
+      "description": " "
+    },
+    {
+      "id": 7,
+      "name": " ",
+      "nameKr": "현재 상황",
+      "description": " "
+    }
+  ]
+}

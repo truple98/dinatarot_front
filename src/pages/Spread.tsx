@@ -4,13 +4,13 @@ import CelticCross from '../components/CelticCross';
 import Relationship from '../components/Relationship';
 import Horoscope from '../components/Horoscope';
 import { useCardReveal } from '../hooks/useCardReveal';
-import type { SpreadCardData } from '../types/card.types';
+import { getSpreadData, type SpreadCardData } from '../utils/tarot';
 import './Spread.css'
 
 interface SpreadProps {
   spreadType: string;
   userInfo: { name: string; concern: string };
-  onComplete: (cards: SpreadCardData[]) => void;
+  onComplete: (cards: SpreadCardData[], interpretation?: string) => void;
 }
 
 const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
@@ -21,22 +21,19 @@ const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
   };
 
   const getCardCount = () => {
-    const counts = {
-      'three-card': 3,
-      'celtic-cross': 10,
-      'relationship': 7,
-      'horoscope': 12
-    };
-    return counts[spreadType as keyof typeof counts] || 3;
+    const spreadData = getSpreadData(spreadType);
+    return spreadData?.cardCount || 3;
   };
 
-  const { handleNext, isComplete, isCardRevealed, getCard, loading, error, canProceed } = useCardReveal(spreadType, getCardCount(), onComplete);
+  const { handleNext, isComplete, isCardRevealed, getCard, loading, error, canProceed, currentStep } = useCardReveal(spreadType, getCardCount(), userInfo, onComplete);
 
-  const handleNextClick = () => {
-    if (loading) return
+  const handleNextClick = async () => {
+    if (loading) return;
 
-    handleNext();
-    if (isComplete) {
+    const wasLastStep = currentStep === getCardCount();
+    await handleNext();
+
+    if (wasLastStep) {
       navigate('/result');
     }
   };
@@ -95,8 +92,8 @@ const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
             </div>
           )}
         </div>
-        <button onClick={handleNextClick} className="next-button animate-bounce" disabled={!canProceed} >
-          {loading ? '...' : isComplete ? '...' : '다음'}
+        <button onClick={handleNextClick} className="next-button animate-bounce" disabled={!canProceed || loading} >
+          {loading ? '해석중...' : isComplete ? '완료!' : '다음'}
         </button>
       </div>
     </div>

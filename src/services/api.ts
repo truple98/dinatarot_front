@@ -1,105 +1,55 @@
+import type { DrawnCard } from "../utils/tarot";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export interface DrawCardsRequest {
-  spreadType: string;
-  count: number;
-}
-
-export interface GenerateReadingRequest {
-  cards: DrawnCard[];
-  spread: SpreadData;
+export interface TarotInterpretationRequest {
   userName: string;
   userConcern: string;
-  question?: string;
+  spreadType: string;
+  drawnCards: DrawnCard[];
 }
 
-export interface ApiResponse<T> {
+export interface TarotInterpretationResponse {
   success: boolean;
-  data: T;
+  data?: {
+    userName: string;
+    userConcern: string;
+    spreadType: string;
+    drawnCards: DrawnCard[];
+    interpretation: string;
+  };
   message: string;
 }
 
-export interface SpreadData {
-  id: string;
-  name: string;
-  nameKr: string;
-  cardCount: number;
-  description: string;
-}
-
-export interface TarotCard {
-  id: number;
-  name: string;
-  nameKr: string;
-  suit?: 'major' | 'cups' | 'wands' | 'swords' | 'pentacles';
-  arcana: 'major' | 'minor';
-  upright: {
-    keywords: string[];
-    meaning: string;
-    description: string;
-  };
-  reversed: {
-    keywords: string[];
-    meaning: string;
-    description: string;
-  };
-  imageFile: string;
-  element?: 'fire' | 'water' | 'air' | 'earth';
-  planet?: string;
-  zodiac?: string;
-}
-
-export interface DrawnCard {
-  card: TarotCard;
-  position: number;
-  positionName: string;
-  isReversed: boolean;
+export interface HealthCheckResponse {
+  status: string;
+  message: string;
 }
 
 export const apiService = {
-  async getSpreads(): Promise<ApiResponse<SpreadData[]>> {
-    const url = `${API_BASE_URL}/spreads`;
+  async healthCheck(): Promise<HealthCheckResponse> {
+    const response = await fetch(`${API_BASE_URL}/health`);
 
-    const response = await fetch(url);
     if (!response.ok) {
-      throw new Error('스프레드 목록 불러오기를 실패했다요...');
+      throw new Error(`X( 오류: ${response.status}`);
     }
-    return await response.json();
+
+    return response.json();
   },
 
-  async getSpread(spreadId: string): Promise<ApiResponse<SpreadData>> {
-    const response = await fetch(`${API_BASE_URL}/spreads/${spreadId}`);
-    if(!response.ok) {
-      throw new Error('스프레드 정보 불러오기를 실패했다요...');
-    }
-    return await response.json();
-  },
-
-  async drawCards(request: DrawCardsRequest): Promise<ApiResponse<{spread: SpreadData, cards: DrawnCard[]}>> {
-    const response = await fetch(`${API_BASE_URL}/cards/draw`, {
+  async getTarotInterpretation(data: TarotInterpretationRequest): Promise<TarotInterpretationResponse> {
+    const response = await fetch(`${API_BASE_URL}/interpret`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(request),
+      body: JSON.stringify(data)
     });
-    if (!response.ok) {
-      throw new Error('카드 추출을 실패했다요...');
-    }
-    return await response.json();
-  },
 
-  async generateReading(request: GenerateReadingRequest): Promise<ApiResponse<{reading: string}>> {
-    const response = await fetch(`${API_BASE_URL}/readings/generate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(request),
-    });
     if (!response.ok) {
-      throw new Error('타로 해석을 실패했다요...');
+      throw new Error(`타로 해석 요청 실패! status: ${response.status}`);
     }
-    return await response.json();
+
+    return response.json();
   }
 };

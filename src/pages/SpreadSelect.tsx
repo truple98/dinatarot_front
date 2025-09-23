@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { apiService } from '../services/api';
-import type { SpreadData } from '../services/api';
+import { getAllSpreads, type SpreadData } from '../utils/tarot';
 
 import './SpreadSelect.css';
 
@@ -16,23 +15,15 @@ const SpreadSelect = ({ onSelect }: SpreadSelectProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchSpreads = async () => {
-      try {
-        setLoading(true);
-        const response = await apiService.getSpreads();
-        if (response.success) {
-          setSpreads(response.data);
-        } else {
-          setError(response.message);
-        }
-      } catch (error) {
-        setError(error instanceof Error ? error.message : '스프레드 목록을 불러오는데 실패했다요...');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSpreads();
+    try {
+      setLoading(true);
+      const spreadsData = getAllSpreads();
+      setSpreads(spreadsData);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : '스프레드 목록을 불러오는데 실패했다요...');
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   const getSpreadIcon = (spreadId: string) => {
@@ -98,9 +89,6 @@ const SpreadSelect = ({ onSelect }: SpreadSelectProps) => {
                 <div className="spread-icon">{getSpreadIcon(spread.id)}</div>
                 <h3 className="spread-title">{spread.name}</h3>
                 <p className="spread-subtitle">{spread.nameKr}</p>
-                <p className="spread-description">
-                  {spread.description}
-                </p>
                 <div className="spread-cards-count">
                   {spread.cardCount}장의 카드
                 </div>

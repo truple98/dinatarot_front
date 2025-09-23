@@ -1,0 +1,30 @@
+{
+  "three-card": {
+    "id": "three-card",
+    "name": "Three Card Spread",
+    "nameKr": "세 장 스프레드",
+    "cardCount": 3,
+    "positions": ["과거", "현재", "미래"]
+  },
+  "celtic-cross": {
+    "id": "celtic-cross",
+    "name": "Celtic Cross",
+    "nameKr": "켈틱 크로스",
+    "cardCount": 10,
+    "positions": ["현재상황", "도전과 장애물", "먼 과거", "가까운 과거", "가까운 미래", "가능한 미래", "현재 내면", "외적 영향", "희망과 두려움", "최종 결과"]
+  },
+  "relationship": {
+    "id": "relationship",
+    "name": "Relationship Spread",
+    "nameKr": "관계 스프레드",
+    "cardCount": 7,
+    "positions": ["나", "상대방", "상대방에 대한 나의 생각", "나에 대한 상대방의 생각", "관계에 대한 나의 생각", "관계에 대한 상대방의 생각", "현재 상황"]
+  },
+  "horoscope": {
+    "id": "horoscope",
+    "name": "Horoscope Spread",
+    "nameKr": "호로스코프 스프레드",
+    "cardCount": 12,
+    "positions": ["자아와 정체성", "재물과 소유", "의사소통과 학습", "가정과 뿌리", "창조와 자녀", "일상과 건강", "파트너십과 관계", "변화와 공유자원", "철학과 여행", "명예와 커리어", "우정과 꿈", "잠재의식과 영성"]
+  }
+}

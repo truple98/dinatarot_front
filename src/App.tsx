@@ -6,7 +6,7 @@ import SpreadSelect from './pages/SpreadSelect';
 import Spread from './pages/Spread';
 import Result from './pages/Result';
 import Loading from './pages/Loading';
-import type { SpreadCardData } from './types/card.types';
+import type { SpreadCardData } from './utils/tarot';
 
 import './App.css';
 
@@ -14,6 +14,7 @@ const AppContent = () => {
   const [userInfo, setUserInfo] = useState<{name: string, concern: string} | null>(null);
   const [selectedSpread, setSelectedSpread] = useState<string | null>(null);
   const [selectedCards, setSelectedCards] = useState<SpreadCardData[] | null>(null);
+  const [interpretation, setInterpretation] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState('');
   const [previousPath, setPreviousPath] = useState('');
@@ -75,11 +76,23 @@ const AppContent = () => {
             <Navigate to="/" replace />
           }/>
           <Route path="/spread" element={userInfo && selectedSpread ?
-            <Spread spreadType={selectedSpread} userInfo={userInfo} onComplete={setSelectedCards} /> :
+            <Spread
+              spreadType={selectedSpread}
+              userInfo={userInfo}
+              onComplete={(cards, interpretationResult) => {
+                setSelectedCards(cards);
+                setInterpretation(interpretationResult || null);
+              }}
+            /> :
             <Navigate to="/" replace />
           }/>
           <Route path="/result" element={selectedCards ?
-            <Result userInfo={userInfo} spreadType={selectedSpread} selectedCards={selectedCards}/> :
+            <Result
+              userInfo={userInfo}
+              spreadType={selectedSpread}
+              selectedCards={selectedCards}
+              interpretation={interpretation}
+            /> :
             <Navigate to="/" replace />
           }/>
         </Routes>
