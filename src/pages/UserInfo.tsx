@@ -91,7 +91,7 @@ const UserInfo = ({ onSubmit }: UserInfoProps) => {
                 onFocus={() => setConcernFocused(true)}
                 onBlur={() => setConcernFocused(false)}
                 className="text-input text-area"
-                maxLength={500}
+                maxLength={100}
                 placeholder=" "
               />
               <label htmlFor="concern" className="text-label">고민을 아디나에게 말해보는거다요.</label>
@@ -99,7 +99,7 @@ const UserInfo = ({ onSubmit }: UserInfoProps) => {
             </div>
             {errors.concern && <div className="helper-text">{errors.concern}</div>}
             <div className={`char-counter ${concern.length > 500 ? 'error' : ''}`}>
-              {concern.length}/500
+              {concern.length}/100
             </div>
           </div>
 
