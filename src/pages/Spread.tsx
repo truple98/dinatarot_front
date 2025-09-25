@@ -25,13 +25,13 @@ const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
     return spreadData?.cardCount || 3;
   };
 
-  const { handleNext, isComplete, isCardRevealed, getCard, loading, error, canProceed, currentStep } = useCardReveal(spreadType, getCardCount(), userInfo, onComplete);
+  const { handleNext, isCardRevealed, getCard, loading, error, canProceed, currentStep } = useCardReveal(spreadType, getCardCount(), userInfo, onComplete);
 
-  const handleNextClick = async () => {
+  const handleNextClick = () => {
     if (loading) return;
 
     const wasLastStep = currentStep === getCardCount();
-    await handleNext();
+    handleNext();
 
     if (wasLastStep) {
       navigate('/result');
@@ -93,7 +93,7 @@ const Spread = ({ spreadType, userInfo, onComplete } : SpreadProps) => {
           )}
         </div>
         <button onClick={handleNextClick} className="next-button animate-bounce" disabled={!canProceed || loading} >
-          {loading ? '해석중...' : isComplete ? '완료!' : '다음'}
+          {loading ? '해석중...' : (currentStep === getCardCount() ? '결과 보기' : '다음')}
         </button>
       </div>
     </div>

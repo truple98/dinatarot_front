@@ -29,11 +29,11 @@ const AppContent = () => {
       switch(location.pathname) {
         case '/spread-select':
           message = '듀아아아아~';
-          loadingDuration = 3000;
+          loadingDuration = 2000;
           break;
         case '/spread':
           message = `카드를 준비중이다요...`;
-          loadingDuration = 3000;
+          loadingDuration = 5000;
           break;
         case '/result':
           message = '아디나를 기다려 달라요...';
