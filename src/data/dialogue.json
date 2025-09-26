@@ -1,50 +1,22 @@
 {
   "start": "아디나가 타로 카드를 뽑았다요. 타로 카드들을 하나씩 열어보면서 어떤 운명이 있는지를 확인해 보겠다요.",
-  "three-card": {
-    "positionTemplates": [
-      "첫 번째 카드는 '과거' 카드다요. {description}",
-      "두 번째 카드는 '현재' 카드다요. {description}",
-      "세 번째 카드는 '미래' 카드다요. {description}"
-    ],
-    "orientationMessages": {
+  "positionTemplates": "{index} 카드는 '{positionName}' 카드다요. {description}",
+  "orientationMessages": {
       "upright": "{cardName} 카드다요! {summary}",
-      "reversed": "그런데, {cardName}가 역방향이다요... 그러면 의미가 달라진다요! {description}"
+      "reversed": "그런데, {cardName}가 역방향이다요... 그러면 의미가 달라진다요! {summary}"
+    },
+  "index": {
+    "1": "첫 번째",
+    "2": "두 번째",
+    "3": "세 번째",
+    "4": "네 번째",
+    "5": "다섯 번째",
+    "6": "여섯 번째",
+    "7": "일곱 번째",
+    "8": "여덟 번째",
+    "9": "아홉 번째",
+    "10": "열 번째",
+    "11": "열 한 번째",
+    "12": "열 두 번째"
     }
-  },
-  "celtic-cross": {
-    "positionTemplates": [
-      "첫 번째 카드는 '현재 상황' 카드다요. {description}",
-      "두 번째 카드는 '도전과 장애물' 카드다요. {description}",
-      "세 번째 카드는 '먼 과거' 카드다요. {description}",
-      "네 번째 카드는 '가까운 과거' 카드다요. {description}",
-      "다섯 번째 카드는 '가까운 미래' 카드다요. {description}",
-      "여섯 번째 카드는 '가능한 미래' 카드다요. {description}",
-      "일곱 번째 카드는 '현재 내면' 카드다요. {description}",
-      "여덟 번째 카드는 '외적 영향' 카드다요. {description}",
-      "아홉 번째 카드는 '희망과 두려움' 카드다요. {description}",
-      "마지막 열 번째 카드는 '최종 결과' 카드다요. {description}"
-    ],
-    "cardRevealPrompts": [
-      "그럼, 첫 번째 카드를 뒤집어보겠다요.",
-      "두 번째 카드를 확인해보겠다요.",
-      "세 번째 카드를 뒤집겠다요.",
-      "네 번째 카드를 보겠다요.",
-      "다섯 번째 카드다요.",
-      "여섯 번째 카드를 확인하겠다요.",
-      "일곱 번째 카드를 뒤집어보겠다요.",
-      "여덟 번째 카드입니다.",
-      "아홉 번째 카드를 보겠다요.",
-      "마지막 카드를 뒤집겠다요."
-    ],
-    "orientationMessages": {
-      "upright": [
-        "{cardName} 카드가 나왔다요! {cardName}는 {summary}",
-        "정방향 {cardName} 카드다요! 이 카드의 의미는 {summary}"
-      ],
-      "reversed": [
-        "{cardName} 카드가 뒤집혀서 나왔다요! 역방향 {cardName}는 {summary}",
-        "뒤집힌 {cardName}다요! 이 카드가 역방향일 때는 {summary}"
-      ]
-    }
-  }
 }
